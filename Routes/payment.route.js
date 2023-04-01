@@ -17,8 +17,8 @@ router.post("/payment", async (req, res) => {
             currency: "BDT",
             prefix: "sp",
             order_id: "15fsdfsd",
-            return_url: `http://localhost:4000/payment/success`,
-            cancel_url: "http://localhost:4000/payment/failed",
+            return_url: `https://surja-pay-payment-intregation-server.vercel.app/payment/success`,
+            cancel_url: "https://surja-pay-payment-intregation-server.vercel.app/payment/failed",
             client_ip: ipAddress,
         };
 
