@@ -38,7 +38,10 @@ router.post("/payment", async (req, res) => {
         });
     } catch (error) {
         console.error(error);
-        res.status(500).send("Error processing payment");
+        res.status(500).send({
+            success: false,
+            message: error,
+        });
     }
 });
 
@@ -48,7 +51,7 @@ router.get("/payment/success", (req, res) => {
     // Here will goes code to save payment info to our DB
 
     // redirect to our success page
-    res.redirect("http://localhost:3000/success");
+    res.redirect("https://surja-pay-payment-intregation-front-part.vercel.app/success");
 });
 
 router.get("/payment/failed", (req, res) => {
@@ -57,7 +60,7 @@ router.get("/payment/failed", (req, res) => {
     // Here will goes code cancle the order
 
     // redirect to our success page
-    res.redirect("http://localhost:3000/failed");
+    res.redirect("https://surja-pay-payment-intregation-front-part.vercel.app/failed");
 });
 
 module.exports = router;
