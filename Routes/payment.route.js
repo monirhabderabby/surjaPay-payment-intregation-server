@@ -17,8 +17,8 @@ router.post("/payment", async (req, res) => {
             currency: "BDT",
             prefix: "sp",
             order_id: "15fsdfsd",
-            return_url: `http://localhost:3000/success`,
-            cancel_url: "http://localhost:3000/failed",
+            return_url: `http://localhost:4000/payment/success`,
+            cancel_url: "http://localhost:4000/payment/failed",
             client_ip: ipAddress,
         };
 
@@ -30,7 +30,6 @@ router.post("/payment", async (req, res) => {
         };
 
         const response = await axios.post("https://sandbox.shurjopayment.com/api/secret-pay", formData, config);
-        console.log(response.data);
         const { checkout_url } = response?.data || {};
 
         res.status(200).send({
@@ -41,6 +40,24 @@ router.post("/payment", async (req, res) => {
         console.error(error);
         res.status(500).send("Error processing payment");
     }
+});
+
+router.get("/payment/success", (req, res) => {
+    const { order_id } = req.query;
+    // Handle payment success
+    // Here will goes code to save payment info to our DB
+
+    // redirect to our success page
+    res.redirect("http://localhost:3000/success");
+});
+
+router.get("/payment/failed", (req, res) => {
+    const { order_id } = req.query;
+    // Handle payment success
+    // Here will goes code cancle the order
+
+    // redirect to our success page
+    res.redirect("http://localhost:3000/failed");
 });
 
 module.exports = router;
