@@ -18,7 +18,7 @@ router.post("/payment", async (req, res) => {
             prefix: "sp",
             order_id: "15fsdfsd",
             return_url: `http://localhost:3000/success`,
-            cancel_url: "http://localhost:4000/success",
+            cancel_url: "http://localhost:3000/failed",
             client_ip: ipAddress,
         };
 
